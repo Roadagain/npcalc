@@ -5,38 +5,37 @@ export default class Party extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            servants: props.servants,
+            starting: props.servants.slice(0, 3),
+            sub: props.servants.slice(3),
             orderedStarting: null,
             orderedSub: null
         };
-    }
-
-    setOrder(name, index) {
-        if (name === "starting") {
-            this.setState({orderedStarting: index});
-        }
-        else {
-            this.setState({orderedSub: index});
-        }
     }
 
     orderChange() {
         if (this.state.orderedStarting === null || this.state.orderedSub === null) {
             return;
         }
-        const servants = this.state.servants;
+        const starting = this.state.starting;
+        const sub = this.state.sub;
         const orderedStarting = this.state.orderedStarting;
         const orderedSub = this.state.orderedSub;
-        [servants[orderedStarting], servants[orderedSub]] = [servants[orderedSub], servants[orderedStarting]];
-        this.setState({servants});
+        [starting[orderedStarting], sub[orderedSub]] = [sub[orderedSub], starting[orderedStarting]];
+        this.setState({starting, sub});
     }
 
     render() {
         return <div>
         <ol>
-        {this.state.servants.map((name, index) => {
+        {this.state.starting.map((name, index) => {
             return <li>
-                <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={e => this.setOrder(e.target.name, e.target.value)}/>
+                <input type="radio" name="starting" value={index} onClick={e => this.setState({orderedStarting: e.target.value})}/>
+                <Servant name={name} np={0} index={index}/>
+            </li>;
+        })}
+        {this.state.sub.map((name, index) => {
+            return <li>
+                <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: e.target.value})}/>
                 <Servant name={name} np={0} index={index}/>
             </li>;
         })}
