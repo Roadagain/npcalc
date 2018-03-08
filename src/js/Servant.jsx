@@ -26,9 +26,9 @@ export default class Servant extends React.Component {
     render() {
         return <div>
         <p>
-        <input type="text" placeholder={this.props.name} onChange={e => this.setState({name: e.target.Value})}></input>
+        <input type="text" placeholder={this.props.name} onChange={e => this.setState({name: e.target.Value})} />
         <progress value={this.state.np} max="100">{this.state.np}%</progress>
-        <input type="number" value={this.state.np} onChange={e => this.setNP(e.target.value)}></input>%
+        <input type="number" value={this.state.np} onChange={e => this.setNP(e.target.value)} />%
         <button onClick={() => this.useNoblePhantasm()}>宝具</button>
         </p>
         </div>
