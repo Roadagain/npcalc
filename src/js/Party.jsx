@@ -1,5 +1,6 @@
 import React from 'react';
 import Servant from './Servant';
+import Target from './Target';
 
 export default class Party extends React.Component {
     constructor(props) {
@@ -63,6 +64,7 @@ export default class Party extends React.Component {
         if (Number.isNaN(charge)) {
             return;
         }
+        charge = Math.max(Math.min(charge, 300), 0);
         if (index < 3) {
             const starting = this.state.starting;
             starting[index].charge[target] = charge;
@@ -75,19 +77,43 @@ export default class Party extends React.Component {
         }
     }
 
+    onNPCharge(index, target, charge) {
+        if (index >= 3) {
+            // 後衛からはNPチャージできない
+            return;
+        }
+        console.log({index, target, charge});
+        const starting = this.state.starting;
+        switch (target) {
+            case Target.SELF:
+                console.log('SELF');
+                this.setNP(index, starting[index].np + charge);
+                break;
+            default:
+                console.log('ALL');
+                starting.forEach((servant, index) => {
+                    this.setNP(index, servant.np + charge);
+                });
+                break;
+        }
+    }
+
     render() {
+        const onChargeChange = (index, target, charge) => this.onChargeChange(index, target, charge);
+        const onNPCharge = (index, target, charge) => this.onNPCharge(index, target, charge);
+
         return <div>
         <ol>
         {this.state.starting.map(({name, np, charge}, index) => {
             return <li>
                 <input type="radio" name="starting" value={index} onClick={e => this.setState({orderedStarting: e.target.value})}/>
-                <Servant name={name} np={np} charge={charge} index={index} onNameChanged={name => this.setName(index, name)} onNPChanged={np => this.setNP(index, np)} onChargeChange={this.onChargeChange} />
+                <Servant name={name} np={np} charge={charge} index={index} onNameChanged={name => this.setName(index, name)} onNPChanged={np => this.setNP(index, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>;
         })}
         {this.state.sub.map(({name, np, charge}, index) => {
             return <li>
                 <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: e.target.value})}/>
-                <Servant name={name} np={np} charge={charge} index={index + 3} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)} onChargeChange={this.onChargeChange} />
+                <Servant name={name} np={np} charge={charge} index={index + 3} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>;
         })}
         </ol>
