@@ -88,6 +88,9 @@ export default class Party extends React.Component {
             case Target.SOMEONE:
                 console.log('SOMEONE');
                 const ordered = this.state.orderedStarting;
+                if (ordered === null) {
+                    return;
+                }
                 this.setNP(ordered, starting[ordered].np + charge);
                 break;
             default:
