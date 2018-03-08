@@ -78,15 +78,12 @@ export default class Party extends React.Component {
     }
 
     onNPCharge(index, target, charge) {
-        console.log({index, target, charge});
         const starting = this.state.starting;
         switch (target) {
             case Target.SELF:
-                console.log('SELF');
                 this.setNP(index, starting[index].np + charge);
                 break;
             case Target.SOMEONE:
-                console.log('SOMEONE');
                 const ordered = this.state.orderedStarting;
                 if (ordered === null) {
                     return;
@@ -94,7 +91,6 @@ export default class Party extends React.Component {
                 this.setNP(ordered, starting[ordered].np + charge);
                 break;
             default:
-                console.log('ALL');
                 starting.forEach((servant, index) => {
                     this.setNP(index, servant.np + charge);
                 });

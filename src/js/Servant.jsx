@@ -11,7 +11,7 @@ export default class Servant extends React.Component {
 
     render() {
         const onChargeChange = (target, charge) => this.props.onChargeChange(this.props.index, target, charge);
-        const onNPCharge = (target, charge) => console.log(target, charge)||this.props.onNPCharge(this.props.index, target, charge);
+        const onNPCharge = (target, charge) => this.props.onNPCharge(this.props.index, target, charge);
 
         return <div>
         <p>
