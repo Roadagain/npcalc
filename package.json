@@ -1,0 +1,14 @@
+{
+  "name": "npcalc",
+  "version": "0.0.1",
+  "description": "NP計算機",
+  "main": "index.js",
+  "repository": "https://github.com/Roadagain/npcalc.git",
+  "author": "Roadagain <ringoh72@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "parcel-bundler": "^1.6.2"
+  }
+}
