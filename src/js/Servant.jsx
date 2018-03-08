@@ -22,7 +22,7 @@ export default class Servant extends React.Component {
         <p>
         <input type="text"></input>
         <progress value={this.state.np} max="100">{this.state.np}%</progress>
-        <input type="number" defaultValue={this.state.np} onChange={e => this.setNP(e.target.value)}></input>%
+        <input type="number" value={this.state.np} onChange={e => this.setNP(e.target.value)}></input>%
         </p>
         </div>
     }
