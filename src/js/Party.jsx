@@ -85,6 +85,11 @@ export default class Party extends React.Component {
                 console.log('SELF');
                 this.setNP(index, starting[index].np + charge);
                 break;
+            case Target.SOMEONE:
+                console.log('SOMEONE');
+                const ordered = this.state.orderedStarting;
+                this.setNP(ordered, starting[ordered].np + charge);
+                break;
             default:
                 console.log('ALL');
                 starting.forEach((servant, index) => {
