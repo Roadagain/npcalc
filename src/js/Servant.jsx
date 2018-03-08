@@ -22,13 +22,13 @@ export default class Servant extends React.Component {
         </p>
         <ul>
             <li key={0}>
-                <NPCharge target={Target.SELF} charge={this.props.charge[Target.SELF]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
+                <NPCharge index={this.props.index} target={Target.SELF} charge={this.props.charge[Target.SELF]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>
             <li key={1}>
-                <NPCharge target={Target.SOMEONE} charge={this.props.charge[Target.SOMEONE]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
+                <NPCharge index={this.props.index} target={Target.SOMEONE} charge={this.props.charge[Target.SOMEONE]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>
             <li key={2}>
-                <NPCharge target={Target.ALL} charge={this.props.charge[Target.ALL]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
+                <NPCharge index={this.props.index} target={Target.ALL} charge={this.props.charge[Target.ALL]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>
         </ul>
         </div>

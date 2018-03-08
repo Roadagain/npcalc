@@ -78,10 +78,6 @@ export default class Party extends React.Component {
     }
 
     onNPCharge(index, target, charge) {
-        if (index >= 3) {
-            // 後衛からはNPチャージできない
-            return;
-        }
         console.log({index, target, charge});
         const starting = this.state.starting;
         switch (target) {
