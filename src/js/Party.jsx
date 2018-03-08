@@ -70,7 +70,7 @@ export default class Party extends React.Component {
         {this.state.sub.map(({name, np}, index) => {
             return <li>
                 <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: e.target.value})}/>
-                <Servant name={name} np={np} index={index} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)}/>
+                <Servant name={name} np={np} index={index + 3} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)}/>
             </li>;
         })}
         </ol>
