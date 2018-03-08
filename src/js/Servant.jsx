@@ -10,7 +10,7 @@ export default class Servant extends React.Component {
     }
 
     setNP(np) {
-        np = Math.max(Math.min(np, 100), 0);
+        np = Math.max(Math.min(np, 300), 0);
         if (Number.isNaN(np)) {
             return;
         }
