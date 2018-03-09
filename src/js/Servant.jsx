@@ -1,28 +1,17 @@
 import React from 'react';
+import Status from './Status';
 import NPCharge from './NPCharge';
 import Target from './Target';
 
 export default class Servant extends React.Component {
-    liberateNoblePhantasm() {
-        if (this.props.np >= 100) {
-            this.props.onNPChange(this.props.index, 0);
-        }
-    }
-
     render() {
         const index = this.props.index;
-        const np = this.props.np;
         const charge = this.props.charge;
         const onChargeChange = (target, charge) => this.props.onChargeChange(index, target, charge);
         const onNPCharge = (target, charge) => this.props.onNPCharge(index, target, charge);
 
         return <div>
-            <p>
-                <input type="text" value={this.props.name} onChange={e => this.props.onNameChange(index, e.target.value)} />
-                <progress value={np} max="100">{np}%</progress>
-                <input type="number" value={np} onChange={e => this.props.onNPChange(index, e.target.value)} />%
-                <button onClick={() => this.liberateNoblePhantasm()} disabled={index > 2 || np < 100}>宝具</button>
-            </p>
+            <Status {...this.props} />
             <ul>
                 <li key={0}>
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SELF} charge={charge[Target.SELF]} />
