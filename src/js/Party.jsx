@@ -95,14 +95,10 @@ export default class Party extends React.Component {
         const onNPCharge = this.onNPCharge.bind(this);
 
         return <div>
-            <ol>
-                {this.state.servants.map((servant, index) => <li className="servant">
-                    <div className="flexbox">
-                        <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onTargetChange} className="flex-item" />
-                        <Servant {...servant} {...{index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
-                    </div>
-                </li>)}
-            </ol>
+            {this.state.servants.map((servant, index) => <div className="flexbox servant">
+                <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onTargetChange} className="flex-item" />
+                <Servant {...servant} {...{index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
+            </div>)}
             <button onClick={this.orderChange.bind(this)}>オーダーチェンジ</button>
         </div>;
     }
