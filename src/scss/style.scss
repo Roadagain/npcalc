@@ -13,6 +13,7 @@
 .flexbox {
     display: flex;
     flex-direction: row;
+    margin: 0;
 }
 
 .flex-item {
@@ -24,5 +25,5 @@
 }
 
 .servant {
-    margin: 10px auto;
+    margin: 20px auto;
 }
