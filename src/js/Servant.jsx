@@ -11,6 +11,7 @@ export default class Servant extends React.Component {
 
     render() {
         const index = this.props.index;
+        const np = this.props.np;
         const charge = this.props.charge;
         const onChargeChange = (target, charge) => this.props.onChargeChange(index, target, charge);
         const onNPCharge = (target, charge) => this.props.onNPCharge(index, target, charge);
@@ -18,9 +19,9 @@ export default class Servant extends React.Component {
         return <div>
             <p>
                 <input type="text" value={this.props.name} onChange={e => this.props.onNameChange(index, e.target.value)} />
-                <progress value={this.props.np} max="100">{this.props.np}%</progress>
-                <input type="number" value={this.props.np} onChange={e => this.props.onNPChange(index, e.target.value)} />%
-                <button onClick={() => this.liberateNoblePhantasm()} disabled={index > 2 || this.props.np < 100}>宝具</button>
+                <progress value={np} max="100">{np}%</progress>
+                <input type="number" value={np} onChange={e => this.props.onNPChange(index, e.target.value)} />%
+                <button onClick={() => this.liberateNoblePhantasm()} disabled={index > 2 || np < 100}>宝具</button>
             </p>
             <ul>
                 <li key={0}>
