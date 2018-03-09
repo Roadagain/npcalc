@@ -61,22 +61,20 @@ export default class Party extends React.Component {
 
     onNPCharge(index, target, charge) {
         const servants = this.state.servants;
-        switch (target) {
-            case Target.SELF:
+        if (target === Target.SELF) {
                 this.setNP(index, servants[index].np + charge);
-                break;
-            case Target.SOMEONE:
+        }
+        else if (target === Target.SOMEONE) {
                 const ordered = this.state.orderedStarting;
                 if (ordered === null) {
                     return;
                 }
                 this.setNP(ordered, servants[ordered].np + charge);
-                break;
-            default:
+        }
+        else {
                 for (let i = 0; i < 3; ++i) {
                     this.setNP(i, servants[i].np + charge);
                 }
-                break;
         }
     }
 
