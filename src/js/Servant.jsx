@@ -31,6 +31,6 @@ export default class Servant extends React.Component {
                     <NPCharge index={this.props.index} target={Target.ALL} charge={this.props.charge[Target.ALL]} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
                 </li>
             </ul>
-        </div>
+        </div>;
     }
 }
