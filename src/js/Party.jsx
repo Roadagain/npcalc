@@ -11,36 +11,33 @@ export default class Party extends React.Component {
             charge: [0, 0, 0]
         }));
         this.state = {
-            starting: servantsInfo.slice(0, 3),
-            sub: servantsInfo.slice(3),
+            servants: servantsInfo,
             orderedStarting: null,
             orderedSub: null
         };
+    }
+
+    splitServants() {
+        const servants = this.state.servants;
+        return [servants.slice(0, 3), servants.slice(3)];
     }
 
     orderChange() {
         if (this.state.orderedStarting === null || this.state.orderedSub === null) {
             return;
         }
-        const starting = this.state.starting;
-        const sub = this.state.sub;
+        const servants = this.state.servants;
         const orderedStarting = this.state.orderedStarting;
-        const orderedSub = this.state.orderedSub;
-        [starting[orderedStarting], sub[orderedSub]] = [sub[orderedSub], starting[orderedStarting]];
-        this.setState({starting, sub});
+        const orderedSub = this.state.orderedSub + 3;
+        [servants[orderedStarting], servants[orderedSub]] = [servants[orderedSub], servants[orderedStarting]]
+        this.setState({servants});
+        console.log(servants);
     }
 
     setName(index, name) {
-        if (index < 3) {
-            const starting = this.state.starting;
-            starting[index].name = name;
-            this.setState({starting});
-        }
-        else {
-            const sub = this.state.sub;
-            sub[index - 3].name = name;
-            this.setState({sub});
-        }
+        const servants = this.state.servants;
+        servants[index].name = name;
+        this.setState({servants});
     }
 
     setNP(index, np) {
@@ -48,16 +45,9 @@ export default class Party extends React.Component {
         if (Number.isNaN(np)) {
             return;
         }
-        if (index < 3) {
-            const starting = this.state.starting;
-            starting[index].np = np;
-            this.setState({starting});
-        }
-        else {
-            const sub = this.state.sub;
-            sub[index - 3].np = np;
-            this.setState({sub});
-        }
+        const servants = this.state.servants;
+        servants[index].np = np;
+        this.setState({servants});
     }
 
     onChargeChange(index, target, charge) {
@@ -65,35 +55,28 @@ export default class Party extends React.Component {
             return;
         }
         charge = Math.max(Math.min(charge, 300), 0);
-        if (index < 3) {
-            const starting = this.state.starting;
-            starting[index].charge[target] = charge;
-            this.setState({starting});
-        }
-        else {
-            const sub = this.state.sub;
-            sub[index - 3].charge[target] = charge;
-            this.setState({sub});
-        }
+        const servants = this.state.servants;
+        servants[index].charge[target] = charge;
+        this.setState({servants});
     }
 
     onNPCharge(index, target, charge) {
-        const starting = this.state.starting;
+        const servants = this.state.servants;
         switch (target) {
             case Target.SELF:
-                this.setNP(index, starting[index].np + charge);
+                this.setNP(index, servants[index].np + charge);
                 break;
             case Target.SOMEONE:
                 const ordered = this.state.orderedStarting;
                 if (ordered === null) {
                     return;
                 }
-                this.setNP(ordered, starting[ordered].np + charge);
+                this.setNP(ordered, servants[ordered].np + charge);
                 break;
             default:
-                starting.forEach((servant, index) => {
-                    this.setNP(index, servant.np + charge);
-                });
+                for (let i = 0; i < 3; ++i) {
+                    this.setNP(i, servants[i].np + charge);
+                }
                 break;
         }
     }
@@ -101,16 +84,17 @@ export default class Party extends React.Component {
     render() {
         const onChargeChange = (index, target, charge) => this.onChargeChange(index, target, charge);
         const onNPCharge = (index, target, charge) => this.onNPCharge(index, target, charge);
+        const [starting, sub] = this.splitServants();
 
         return <div>
         <ol>
-        {this.state.starting.map(({name, np, charge}, index) => {
+        {starting.map(({name, np, charge}, index) => {
             return <li>
                 <input type="radio" name="starting" value={index} onClick={e => this.setState({orderedStarting: e.target.value})}/>
                 <Servant name={name} np={np} charge={charge} index={index} onNameChanged={name => this.setName(index, name)} onNPChanged={np => this.setNP(index, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>;
         })}
-        {this.state.sub.map(({name, np, charge}, index) => {
+        {sub.map(({name, np, charge}, index) => {
             return <li>
                 <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: e.target.value})}/>
                 <Servant name={name} np={np} charge={charge} index={index + 3} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
