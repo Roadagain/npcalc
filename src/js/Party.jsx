@@ -96,9 +96,9 @@ export default class Party extends React.Component {
 
         return <div>
             <ol>
-                {this.state.servants.map(({name, np, charge}, index) => <li>
+                {this.state.servants.map((servant, index) => <li>
                     <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onTargetChange} />
-                    <Servant {...{name, np, charge, index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
+                    <Servant {...servant} {...{index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
                 </li>)}
             </ol>
             <button onClick={this.orderChange.bind(this)}>オーダーチェンジ</button>
