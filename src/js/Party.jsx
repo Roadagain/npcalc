@@ -28,10 +28,9 @@ export default class Party extends React.Component {
         }
         const servants = this.state.servants;
         const orderedStarting = this.state.orderedStarting;
-        const orderedSub = this.state.orderedSub + 3;
+        const orderedSub = this.state.orderedSub;
         [servants[orderedStarting], servants[orderedSub]] = [servants[orderedSub], servants[orderedStarting]]
         this.setState({servants});
-        console.log(servants);
     }
 
     setName(index, name) {
@@ -90,13 +89,13 @@ export default class Party extends React.Component {
         <ol>
         {starting.map(({name, np, charge}, index) => {
             return <li>
-                <input type="radio" name="starting" value={index} onClick={e => this.setState({orderedStarting: e.target.value})}/>
+                <input type="radio" name="starting" value={index} onClick={e => this.setState({orderedStarting: Number(e.target.value)})}/>
                 <Servant name={name} np={np} charge={charge} index={index} onNameChanged={name => this.setName(index, name)} onNPChanged={np => this.setNP(index, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>;
         })}
         {sub.map(({name, np, charge}, index) => {
             return <li>
-                <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: e.target.value})}/>
+                <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: Number(e.target.value) + 3})}/>
                 <Servant name={name} np={np} charge={charge} index={index + 3} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
             </li>;
         })}
