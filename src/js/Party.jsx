@@ -97,13 +97,13 @@ export default class Party extends React.Component {
         const [starting, sub] = this.splitServants();
 
         return <div>
-        <ol>
-            {this.state.servants.map(({name, np, charge}, index) => <li>
-                <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onOrderChange} />
-                <Servant name={name} np={np} charge={charge} index={index} onNameChanged={onNameChanged} onNPChanged={onNPChanged} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
-            </li>)}
-        </ol>
-        <button onClick={() => this.orderChange()}>オーダーチェンジ</button>
+            <ol>
+                {this.state.servants.map(({name, np, charge}, index) => <li>
+                    <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onOrderChange} />
+                    <Servant name={name} np={np} charge={charge} index={index} onNameChanged={onNameChanged} onNPChanged={onNPChanged} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
+                </li>)}
+            </ol>
+            <button onClick={() => this.orderChange()}>オーダーチェンジ</button>
         </div>;
     }
 }
