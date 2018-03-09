@@ -62,7 +62,7 @@ export default class Party extends React.Component {
         if (Number.isNaN(charge)) {
             return;
         }
-        charge = this.clamp(np, 0, 300);
+        charge = this.clamp(charge, 0, 300);
         const servants = this.state.servants;
         servants[index].charge[target] = charge;
         this.setState({servants});
