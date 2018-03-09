@@ -5,13 +5,13 @@ import Target from './Target';
 export default class Party extends React.Component {
     constructor(props) {
         super(props);
-        const servantsInfo = Array.apply(null, Array(6)).map((_, index) => ({
+        const servants = Array.apply(null, Array(6)).map((_, index) => ({
             name: "鯖" + (index + 1),
             np: 0,
             charge: [0, 0, 0]
         }));
         this.state = {
-            servants: servantsInfo,
+            servants,
             targetStarting: null,
             targetSub: null
         };
