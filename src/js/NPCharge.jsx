@@ -3,10 +3,12 @@ import Target from './Target';
 
 export default class NPCharge extends React.Component {
     render() {
+        const onChargeChange = e => this.props.onChargeChange(this.props.target, e.target.value);
+        const onNPCharge = this.props.onNPCharge.bind(this, this.props.target, this.props.charge);
         return <div>
             {Target.asString(this.props.target)}
-            <input type="number" value={this.props.charge} onChange={e => this.props.onChargeChange(this.props.target, e.target.value)}/>%
-            <button onClick={this.props.onNPCharge.bind(this, this.props.target, this.props.charge)} disabled={this.props.index >= 3}>付与</button>
+            <input type="number" value={this.props.charge} onChange={onChargeChange}/>%
+            <button onClick={onNPCharge} disabled={this.props.index >= 3}>付与</button>
         </div>;
     }
 }
