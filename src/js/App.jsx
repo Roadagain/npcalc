@@ -1,3 +1,4 @@
+import '../scss/style.scss';
 import React from 'react';
 import Party from './Party';
 

@@ -7,7 +7,7 @@ export default class NPCharge extends React.Component {
         const onNPCharge = this.props.onNPCharge.bind(this, this.props.target, this.props.charge);
         return <div>
             {Target.asString(this.props.target)}
-            <input type="number" value={this.props.charge} onChange={onChargeChange}/>%
+            <input type="number" value={this.props.charge} onChange={onChargeChange} className="shorttext"/>%
             <button onClick={onNPCharge} disabled={this.props.index >= 3}>付与</button>
         </div>;
     }
