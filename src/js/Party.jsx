@@ -43,13 +43,13 @@ export default class Party extends React.Component {
         this.setState({servants});
     }
 
-    setName(index, name) {
+    onNameChange(index, name) {
         const servants = this.state.servants;
         servants[index].name = name;
         this.setState({servants});
     }
 
-    setNP(index, np) {
+    onNPChange(index, np) {
         np = Math.max(Math.min(np, 300), 0);
         if (Number.isNaN(np)) {
             return;
@@ -72,26 +72,26 @@ export default class Party extends React.Component {
     onNPCharge(index, target, charge) {
         const servants = this.state.servants;
         if (target === Target.SELF) {
-            this.setNP(index, servants[index].np + charge);
+            this.onNPChange(index, servants[index].np + charge);
         }
         else if (target === Target.SOMEONE) {
             const ordered = this.state.orderedStarting;
             if (ordered === null) {
                 return;
             }
-            this.setNP(ordered, servants[ordered].np + charge);
+            this.onNPChange(ordered, servants[ordered].np + charge);
         }
         else {
             for (let i = 0; i < 3; ++i) {
-                this.setNP(i, servants[i].np + charge);
+                this.onNPChange(i, servants[i].np + charge);
             }
         }
     }
 
     render() {
         const onOrderChange = e => this.onOrderChange(e.target.name, e.target.value);
-        const onNameChanged = this.setName.bind(this);
-        const onNPChanged = this.setNP.bind(this);
+        const onNameChange = this.onNameChange.bind(this);
+        const onNPChange = this.onNPChange.bind(this);
         const onChargeChange = this.onChargeChange.bind(this);
         const onNPCharge = this.onNPCharge.bind(this);
         const [starting, sub] = this.splitServants();
@@ -100,7 +100,7 @@ export default class Party extends React.Component {
             <ol>
                 {this.state.servants.map(({name, np, charge}, index) => <li>
                     <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onOrderChange} />
-                    <Servant name={name} np={np} charge={charge} index={index} onNameChanged={onNameChanged} onNPChanged={onNPChanged} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
+                    <Servant name={name} np={np} charge={charge} index={index} onNameChange={onNameChange} onNPChange={onNPChange} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
                 </li>)}
             </ol>
             <button onClick={() => this.orderChange()}>オーダーチェンジ</button>
