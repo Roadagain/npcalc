@@ -103,7 +103,7 @@ export default class Party extends React.Component {
                     <Servant {...{name, np, charge, index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
                 </li>)}
             </ol>
-            <button onClick={() => this.orderChange()}>オーダーチェンジ</button>
+            <button onClick={this.orderChange.bind(this)}>オーダーチェンジ</button>
         </div>;
     }
 }
