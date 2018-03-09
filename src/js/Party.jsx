@@ -44,11 +44,15 @@ export default class Party extends React.Component {
         this.setState({servants});
     }
 
+    clamp(value, min, max) {
+        return Math.max(Math.min(value, max), min);
+    }
+
     onNPChange(index, np) {
-        np = Math.max(Math.min(np, 300), 0);
         if (Number.isNaN(np)) {
             return;
         }
+        np = this.clamp(np, 0, 300);
         const servants = this.state.servants;
         servants[index].np = np;
         this.setState({servants});
@@ -58,7 +62,7 @@ export default class Party extends React.Component {
         if (Number.isNaN(charge)) {
             return;
         }
-        charge = Math.max(Math.min(charge, 300), 0);
+        charge = this.clamp(np, 0, 300);
         const servants = this.state.servants;
         servants[index].charge[target] = charge;
         this.setState({servants});
