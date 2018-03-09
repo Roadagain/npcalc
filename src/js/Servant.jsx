@@ -10,16 +10,16 @@ export default class Servant extends React.Component {
         const onChargeChange = (target, charge) => this.props.onChargeChange(index, target, charge);
         const onNPCharge = (target, charge) => this.props.onNPCharge(index, target, charge);
 
-        return <div>
+        return <div className="flex-item">
             <Status {...this.props} />
-            <ul>
-                <li key={0}>
+            <ul className="flexbox">
+                <li key={0} className="flex-item no-marker">
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SELF} charge={charge[Target.SELF]} />
                 </li>
-                <li key={1}>
+                <li key={1} className="flex-item no-marker">
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SOMEONE} charge={charge[Target.SOMEONE]} />
                 </li>
-                <li key={2}>
+                <li key={2} className="flex-item no-marker">
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.ALL} charge={charge[Target.ALL]} />
                 </li>
             </ul>

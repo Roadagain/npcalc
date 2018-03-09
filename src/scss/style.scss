@@ -9,3 +9,16 @@
 .np-guage {
     width: 7em;
 }
+
+.flexbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-item {
+    margin-left: 10px;
+}
+
+.no-marker {
+    list-style-type: none;
+}
