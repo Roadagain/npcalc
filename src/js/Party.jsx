@@ -17,11 +17,6 @@ export default class Party extends React.Component {
         };
     }
 
-    splitServants() {
-        const servants = this.state.servants;
-        return [servants.slice(0, 3), servants.slice(3)];
-    }
-
     onOrderChange(name, value) {
         const index = Number(value);
         if (name === "starting") {
@@ -94,7 +89,6 @@ export default class Party extends React.Component {
         const onNPChange = this.onNPChange.bind(this);
         const onChargeChange = this.onChargeChange.bind(this);
         const onNPCharge = this.onNPCharge.bind(this);
-        const [starting, sub] = this.splitServants();
 
         return <div>
             <ol>
