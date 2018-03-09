@@ -5,119 +5,103 @@ import Target from './Target';
 export default class Party extends React.Component {
     constructor(props) {
         super(props);
-        const servantsInfo = props.servants.map(name => ({
-            name,
+        const servants = Array.apply(null, Array(6)).map((_, index) => ({
+            name: "鯖" + (index + 1),
             np: 0,
             charge: [0, 0, 0]
         }));
         this.state = {
-            starting: servantsInfo.slice(0, 3),
-            sub: servantsInfo.slice(3),
-            orderedStarting: null,
-            orderedSub: null
+            servants,
+            targetStarting: null,
+            targetSub: null
         };
     }
 
-    orderChange() {
-        if (this.state.orderedStarting === null || this.state.orderedSub === null) {
-            return;
-        }
-        const starting = this.state.starting;
-        const sub = this.state.sub;
-        const orderedStarting = this.state.orderedStarting;
-        const orderedSub = this.state.orderedSub;
-        [starting[orderedStarting], sub[orderedSub]] = [sub[orderedSub], starting[orderedStarting]];
-        this.setState({starting, sub});
-    }
-
-    setName(index, name) {
-        if (index < 3) {
-            const starting = this.state.starting;
-            starting[index].name = name;
-            this.setState({starting});
+    onTargetChange(name, value) {
+        const index = Number(value);
+        if (name === "starting") {
+            this.setState({targetStarting: index});
         }
         else {
-            const sub = this.state.sub;
-            sub[index - 3].name = name;
-            this.setState({sub});
+            this.setState({targetSub: index});
         }
     }
 
-    setNP(index, np) {
-        np = Math.max(Math.min(np, 300), 0);
+    orderChange() {
+        if (this.state.targetStarting === null || this.state.targetSub === null) {
+            return;
+        }
+        const servants = this.state.servants;
+        const targetStarting = this.state.targetStarting;
+        const targetSub = this.state.targetSub;
+        [servants[targetStarting], servants[targetSub]] = [servants[targetSub], servants[targetStarting]]
+        this.setState({servants});
+    }
+
+    onNameChange(index, name) {
+        const servants = this.state.servants;
+        servants[index].name = name;
+        this.setState({servants});
+    }
+
+    clamp(value, min, max) {
+        return Math.max(Math.min(value, max), min);
+    }
+
+    onNPChange(index, np) {
         if (Number.isNaN(np)) {
             return;
         }
-        if (index < 3) {
-            const starting = this.state.starting;
-            starting[index].np = np;
-            this.setState({starting});
-        }
-        else {
-            const sub = this.state.sub;
-            sub[index - 3].np = np;
-            this.setState({sub});
-        }
+        np = this.clamp(np, 0, 300);
+        const servants = this.state.servants;
+        servants[index].np = np;
+        this.setState({servants});
     }
 
     onChargeChange(index, target, charge) {
         if (Number.isNaN(charge)) {
             return;
         }
-        charge = Math.max(Math.min(charge, 300), 0);
-        if (index < 3) {
-            const starting = this.state.starting;
-            starting[index].charge[target] = charge;
-            this.setState({starting});
-        }
-        else {
-            const sub = this.state.sub;
-            sub[index - 3].charge[target] = charge;
-            this.setState({sub});
-        }
+        charge = this.clamp(np, 0, 300);
+        const servants = this.state.servants;
+        servants[index].charge[target] = charge;
+        this.setState({servants});
     }
 
     onNPCharge(index, target, charge) {
-        const starting = this.state.starting;
-        switch (target) {
-            case Target.SELF:
-                this.setNP(index, starting[index].np + charge);
-                break;
-            case Target.SOMEONE:
-                const ordered = this.state.orderedStarting;
-                if (ordered === null) {
-                    return;
-                }
-                this.setNP(ordered, starting[ordered].np + charge);
-                break;
-            default:
-                starting.forEach((servant, index) => {
-                    this.setNP(index, servant.np + charge);
-                });
-                break;
+        const servants = this.state.servants;
+        if (target === Target.SELF) {
+            this.onNPChange(index, servants[index].np + charge);
+        }
+        else if (target === Target.SOMEONE) {
+            const targetStarting = this.state.targetStarting;
+            if (targetStarting === null) {
+                return;
+            }
+            this.onNPChange(targetStarting, servants[targetStarting].np + charge);
+        }
+        else {
+            for (let i = 0; i < 3; ++i) {
+                this.onNPChange(i, servants[i].np + charge);
+            }
         }
     }
 
     render() {
-        const onChargeChange = (index, target, charge) => this.onChargeChange(index, target, charge);
-        const onNPCharge = (index, target, charge) => this.onNPCharge(index, target, charge);
+        const onTargetChange = e => this.onTargetChange(e.target.name, e.target.value);
+        const onNameChange = this.onNameChange.bind(this);
+        const onNPChange = this.onNPChange.bind(this);
+        const onChargeChange = this.onChargeChange.bind(this);
+        const onNPCharge = this.onNPCharge.bind(this);
 
         return <div>
-        <ol>
-        {this.state.starting.map(({name, np, charge}, index) => {
-            return <li>
-                <input type="radio" name="starting" value={index} onClick={e => this.setState({orderedStarting: e.target.value})}/>
-                <Servant name={name} np={np} charge={charge} index={index} onNameChanged={name => this.setName(index, name)} onNPChanged={np => this.setNP(index, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
-            </li>;
-        })}
-        {this.state.sub.map(({name, np, charge}, index) => {
-            return <li>
-                <input type="radio" name="sub" value={index} onClick={e => this.setState({orderedSub: e.target.value})}/>
-                <Servant name={name} np={np} charge={charge} index={index + 3} onNameChanged={name => this.setName(index + 3, name)} onNPChanged={np => this.setNP(index + 3, np)} onChargeChange={onChargeChange} onNPCharge={onNPCharge} />
-            </li>;
-        })}
-        </ol>
-        <button onClick={() => this.orderChange()}>オーダーチェンジ</button>
+            <ol>
+                {this.state.servants.map((servant, index) => <li>
+                    <input type="radio" name={index < 3 ? "starting" : "sub"} value={index} onClick={onTargetChange} />
+                    <Servant {...servant} {...{index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
+                </li>)}
+            </ol>
+            <button onClick={this.orderChange.bind(this)}>オーダーチェンジ</button>
         </div>;
     }
 }
