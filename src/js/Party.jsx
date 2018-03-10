@@ -98,13 +98,13 @@ export default class Party extends React.Component {
 
         return <div>
             <div className="starting">
-                {starting.map((servant, index) => <div className="flexbox servant">
+                {starting.map((servant, index) => <div className="flexbox servant" key={index}>
                     <input type="radio" name="starting" value={index} onClick={onTargetChange} className="flex-item" />
                     <Servant {...servant} {...{index, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
                 </div>)}
             </div>
             <div className="sub">
-                {sub.map((servant, index) => <div className="flexbox servant">
+                {sub.map((servant, index) => <div className="flexbox servant" key={index + 3}>
                     <input type="radio" name="sub" value={index + 3} onClick={onTargetChange} className="flex-item" />
                     <Servant {...servant} {...{index: index + 3, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
                 </div>)}
