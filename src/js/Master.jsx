@@ -20,6 +20,7 @@ export default class Master extends React.Component {
             Uniform.EMPTY,
             new Uniform('カルデア戦闘服', this.props.orderChange, 'オーダーチェンジ'),
             new Uniform('魔術協会制服', this.props.onNPCharge.bind(this, null, Target.SOMEONE, 20), '霊子譲渡'),
+            new Uniform('ブリリアント・サマー', this.props.onNPCharge.bind(this, null, Target.SOMEONE, 10), 'シーハウス・シャワー'),
         ];
         const onUniformChange = this.onUniformChange.bind(this);
 
