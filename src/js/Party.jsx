@@ -110,7 +110,7 @@ export default class Party extends React.Component {
                 </div>)}
             </div>
             <button onClick={this.orderChange.bind(this)}>オーダーチェンジ</button>
-            <button onClick={this.onNPCharge.bind(this, 0, Target.SOMEONE, 20)}>霊子譲渡</button>
+            <button onClick={this.onNPCharge.bind(this, null, Target.SOMEONE, 20)}>霊子譲渡</button>
         </div>;
     }
 }
