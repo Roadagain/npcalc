@@ -1,6 +1,7 @@
 import React from 'react';
 import Servant from './Servant';
 import Target from './Target';
+import Master from './Master';
 
 export default class Party extends React.Component {
     constructor(props) {
@@ -89,6 +90,7 @@ export default class Party extends React.Component {
 
     render() {
         const onTargetChange = e => this.onTargetChange(e.target.name, e.target.value);
+        const orderChange = this.orderChange.bind(this);
         const onNameChange = this.onNameChange.bind(this);
         const onNPChange = this.onNPChange.bind(this);
         const onChargeChange = this.onChargeChange.bind(this);
@@ -109,7 +111,7 @@ export default class Party extends React.Component {
                     <Servant {...servant} {...{index: index + 3, onNameChange, onNPChange, onChargeChange, onNPCharge}} />
                 </div>)}
             </div>
-            <button onClick={this.orderChange.bind(this)}>オーダーチェンジ</button>
+            <Master orderChange={orderChange} onNPCharge={onNPCharge} />
         </div>;
     }
 }
