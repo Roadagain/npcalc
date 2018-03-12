@@ -1,6 +1,6 @@
 {
   "name": "npcalc",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "NP計算機",
   "main": "index.js",
   "repository": "https://github.com/Roadagain/npcalc.git",
