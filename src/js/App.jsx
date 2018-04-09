@@ -10,7 +10,7 @@ export default class App extends React.Component {
         const servants = Array.apply(null, Array(6)).map((_, index) => ({
             name: "鯖" + (index + 1),
             np: 0,
-            charge: [0, 0, 0] // SELF, SOMEONE, ALL
+            charge: [0, 0, 0, 0] // SELF, SOMEONE, ALL, NOBLE_PHANTASM
         }));
         this.state = {
             servants,
@@ -88,6 +88,7 @@ export default class App extends React.Component {
             this.onNPChange(targetStarting, servants[targetStarting].np + charge);
         }
         else {
+            // ALLもNOBLE_PHANTASMもここ
             for (let i = 0; i < 3; ++i) {
                 this.onNPChange(i, servants[i].np + charge);
             }
