@@ -7,6 +7,7 @@ export default class NoblePhantasmCharge extends React.Component {
         return <div>
             宝具
             {/*チャージ値が0ならプレースホルダーを表示する(入力の時に050とかにならないため)*/}
+            {/*TODO: OC依存のチャージに対応*/}
             <input type="number" placeholder={0} value={this.props.charge || ""} onChange={onChargeChange} className="short-text"/>%
         </div>;
     }
