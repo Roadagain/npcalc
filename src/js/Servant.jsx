@@ -1,6 +1,7 @@
 import React from 'react';
 import Status from './Status';
 import NPCharge from './NPCharge';
+import NoblePhantasmCharge from './NoblePhantasmCharge';
 import Target from './Target';
 
 export default class Servant extends React.Component {
@@ -11,7 +12,7 @@ export default class Servant extends React.Component {
         const onNPCharge = (target, charge) => this.props.onNPCharge(index, target, charge);
 
         return <div className="flex-item">
-            <Status {...this.props} />
+            <Status {...this.props}  />
             <ul className="flexbox">
                 {/*TODO: chargeに関してはcharge.selfとかで指定できるようにする*/}
                 <li className="flex-item no-marker">
@@ -22,6 +23,9 @@ export default class Servant extends React.Component {
                 </li>
                 <li className="flex-item no-marker">
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.ALL} charge={charge[Target.ALL]} />
+                </li>
+                <li className="flex-item no-marker">
+                    <NoblePhantasmCharge {...{index, onChargeChange, onNPCharge}} charge={charge[Target.NOBLE_PHANTASM]} />
                 </li>
             </ul>
         </div>;
