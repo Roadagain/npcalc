@@ -13,6 +13,7 @@ export default class Servant extends React.Component {
         return <div className="flex-item">
             <Status {...this.props} />
             <ul className="flexbox">
+                {/*TODO: chargeに関してはcharge.selfとかで指定できるようにする*/}
                 <li className="flex-item no-marker">
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SELF} charge={charge[Target.SELF]} />
                 </li>

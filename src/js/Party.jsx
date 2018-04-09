@@ -10,6 +10,7 @@ export default class Party extends React.Component {
         const sub = this.props.servants.slice(3);
 
         return <div>
+            {/*前衛と後衛でコンポーネントがほしい*/}
             <div className="starting">
                 {starting.map((servant, index) => <div className="flexbox servant" key={index}>
                     <input type="radio" name="starting" value={index} onClick={onTargetChange} className="flex-item" />
