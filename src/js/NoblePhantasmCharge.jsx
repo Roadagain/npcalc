@@ -1,14 +1,14 @@
 import React from 'react';
 import Target from './Target';
+import NumberInput from './NumberInput';
 
 export default class NoblePhantasmCharge extends React.Component {
     render() {
         const onChargeChange = e => this.props.onChargeChange(Target.NOBLE_PHANTASM, e.target.value);
         return <div>
             宝具
-            {/*チャージ値が0ならプレースホルダーを表示する(入力の時に050とかにならないため)*/}
             {/*TODO: OC依存のチャージに対応*/}
-            <input type="number" placeholder={0} value={this.props.charge || ""} onChange={onChargeChange} className="short-text"/>%
+            <NumberInput value={this.props.charge} onChange={onChargeChange}/>
         </div>;
     }
 }
