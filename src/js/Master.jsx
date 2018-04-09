@@ -16,6 +16,7 @@ export default class Master extends React.Component {
     }
 
     render() {
+        //TODO: implementedの生成を外部に移動
         const implemented = [
             Uniform.EMPTY,
             new Uniform('カルデア戦闘服', this.props.orderChange, 'オーダーチェンジ'),
