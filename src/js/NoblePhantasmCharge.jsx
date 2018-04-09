@@ -1,10 +1,9 @@
 import React from 'react';
-import NPCharge from './NPCharge';
+import Target from './Target';
 
 export default class NoblePhantasmCharge extends React.Component {
     render() {
-        const onChargeChange = e => this.props.onChargeChange(this.props.target, e.target.value);
-        const onNPCharge = this.props.onNPCharge.bind(this, this.props.target, this.props.charge);
+        const onChargeChange = e => this.props.onChargeChange(Target.NOBLE_PHANTASM, e.target.value);
         return <div>
             宝具
             {/*チャージ値が0ならプレースホルダーを表示する(入力の時に050とかにならないため)*/}

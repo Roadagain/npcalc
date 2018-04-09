@@ -88,6 +88,7 @@ export default class App extends React.Component {
             this.onNPChange(targetStarting, servants[targetStarting].np + charge);
         }
         else {
+            // ALLもNOBLE_PHANTASMもここ
             for (let i = 0; i < 3; ++i) {
                 this.onNPChange(i, servants[i].np + charge);
             }
