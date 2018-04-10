@@ -10,7 +10,12 @@ export default class App extends React.Component {
         const servants = Array.apply(null, Array(6)).map((_, index) => ({
             name: "鯖" + (index + 1),
             np: 0,
-            charge: [0, 0, 0, 0] // SELF, SOMEONE, ALL, NOBLE_PHANTASM
+            charge: {
+                self: 0,
+                someone: 0,
+                all: 0,
+                noblePhantasm: 0
+            }
         }));
         this.state = {
             servants,
@@ -69,7 +74,18 @@ export default class App extends React.Component {
         //NPは0~300に収まるからチャージ値もそこまでに収める
         charge = this.clamp(charge, 0, 300);
         const servants = this.state.servants;
-        servants[index].charge[target] = charge;
+        if (target === Target.SELF) {
+            servants[index].charge.self = charge;
+        }
+        else if (target === Target.SOMEONE) {
+            servants[index].charge.someone = charge;
+        }
+        else if (target === Target.ALL) {
+            servants[index].charge.all = charge;
+        }
+        else if (target === Target.NOBLE_PHANTASM) {
+            servants[index].charge.noblePhantasm = charge;
+        }
         this.setState({servants});
     }
 

@@ -9,7 +9,7 @@ export default class Servant extends React.Component {
         if (this.props.np >= 100) {
             this.props.onNPChange(this.props.index, 0);
         }
-        this.props.onNPCharge(this.props.index, Target.NOBLE_PHANTASM, this.props.charge[Target.NOBLE_PHANTASM]);
+        this.props.onNPCharge(this.props.index, Target.NOBLE_PHANTASM, this.props.charge.noblePhantasm);
     }
 
     render() {
@@ -23,16 +23,16 @@ export default class Servant extends React.Component {
             <ul className="flexbox">
                 {/*TODO: chargeに関してはcharge.selfとかで指定できるようにする*/}
                 <li className="flex-item no-marker">
-                    <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SELF} charge={charge[Target.SELF]} />
+                    <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SELF} charge={charge.self} />
                 </li>
                 <li className="flex-item no-marker">
-                    <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SOMEONE} charge={charge[Target.SOMEONE]} />
+                    <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.SOMEONE} charge={charge.someone} />
                 </li>
                 <li className="flex-item no-marker">
-                    <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.ALL} charge={charge[Target.ALL]} />
+                    <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.ALL} charge={charge.all} />
                 </li>
                 <li className="flex-item no-marker">
-                    <NoblePhantasmCharge {...{index, onChargeChange}} charge={charge[Target.NOBLE_PHANTASM]} />
+                    <NoblePhantasmCharge {...{index, onChargeChange}} charge={charge.noblePhantasm} />
                 </li>
             </ul>
         </div>;
