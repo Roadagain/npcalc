@@ -1,3 +1,3 @@
 # npcalc
 NP計算機
-roadagain.github.io/npcalc
+https://roadagain.github.io/npcalc
