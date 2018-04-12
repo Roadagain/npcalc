@@ -10,7 +10,12 @@ export default class App extends React.Component {
         const servants = Array.apply(null, Array(6)).map((_, index) => ({
             name: "鯖" + (index + 1),
             np: 0,
-            charge: [0, 0, 0]
+            charge: {
+                self: 0,
+                someone: 0,
+                all: 0,
+                noblePhantasm: 0
+            }
         }));
         this.state = {
             servants,
@@ -46,6 +51,7 @@ export default class App extends React.Component {
         this.setState({servants});
     }
 
+    //どこか別の場所に切り分けてもいいかも
     clamp(value, min, max) {
         return Math.max(Math.min(value, max), min);
     }
@@ -54,6 +60,7 @@ export default class App extends React.Component {
         if (Number.isNaN(np)) {
             return;
         }
+        //NPは0~300まで
         np = this.clamp(np, 0, 300);
         const servants = this.state.servants;
         servants[index].np = np;
@@ -64,14 +71,28 @@ export default class App extends React.Component {
         if (Number.isNaN(charge)) {
             return;
         }
+        //NPは0~300に収まるからチャージ値もそこまでに収める
         charge = this.clamp(charge, 0, 300);
         const servants = this.state.servants;
-        servants[index].charge[target] = charge;
+        if (target === Target.SELF) {
+            servants[index].charge.self = charge;
+        }
+        else if (target === Target.SOMEONE) {
+            servants[index].charge.someone = charge;
+        }
+        else if (target === Target.ALL) {
+            servants[index].charge.all = charge;
+        }
+        else if (target === Target.NOBLE_PHANTASM) {
+            servants[index].charge.noblePhantasm = charge;
+        }
         this.setState({servants});
     }
 
     onNPCharge(index, target, charge) {
         const servants = this.state.servants;
+
+        //対象だけわかればonNPChangeに丸投げできる
         if (target === Target.SELF) {
             this.onNPChange(index, servants[index].np + charge);
         }
@@ -83,6 +104,7 @@ export default class App extends React.Component {
             this.onNPChange(targetStarting, servants[targetStarting].np + charge);
         }
         else {
+            // ALLもNOBLE_PHANTASMもここ
             for (let i = 0; i < 3; ++i) {
                 this.onNPChange(i, servants[i].np + charge);
             }
