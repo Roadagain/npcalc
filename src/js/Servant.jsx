@@ -16,7 +16,7 @@ export default class Servant extends React.Component {
         if (this.props.np >= 100) {
             this.props.onNPChange(this.props.index, 0);
         }
-        this.props.onNPCharge(this.props.index, Target.NOBLE_PHANTASM, this.props.charge.noblePhantasm);
+        this.props.onNPCharge(this.props.index, this.state.rechargeTarget, this.props.charge.noblePhantasm);
     }
 
     onRechargeTargetChange(rechargeTarget) {
