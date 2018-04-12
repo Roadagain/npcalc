@@ -5,11 +5,22 @@ import NoblePhantasmCharge from './NoblePhantasmCharge';
 import Target from './Target';
 
 export default class Servant extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            rechargeTarget: Target.SELF
+        };
+    }
+
     liberateNoblePhantasm() {
         if (this.props.np >= 100) {
             this.props.onNPChange(this.props.index, 0);
         }
-        this.props.onNPCharge(this.props.index, Target.NOBLE_PHANTASM, this.props.charge.noblePhantasm);
+        this.props.onNPCharge(this.props.index, this.state.rechargeTarget, this.props.charge.noblePhantasm);
+    }
+
+    onRechargeTargetChange(rechargeTarget) {
+        this.setState({rechargeTarget})
     }
 
     render() {
@@ -17,6 +28,7 @@ export default class Servant extends React.Component {
         const charge = this.props.charge;
         const onChargeChange = (target, charge) => this.props.onChargeChange(index, target, charge);
         const onNPCharge = (target, charge) => this.props.onNPCharge(index, target, charge);
+        const onRechargeTargetChange = this.onRechargeTargetChange.bind(this);
 
         return <div className="flex-item">
             <Status {...this.props} liberateNoblePhantasm={this.liberateNoblePhantasm.bind(this)}  />
@@ -31,7 +43,7 @@ export default class Servant extends React.Component {
                     <NPCharge {...{index, onChargeChange, onNPCharge}} target={Target.ALL} charge={charge.all} />
                 </li>
                 <li className="flex-item no-marker">
-                    <NoblePhantasmCharge {...{index, onChargeChange}} charge={charge.noblePhantasm} />
+                    <NoblePhantasmCharge {...{index, onChargeChange, onRechargeTargetChange}} charge={charge.noblePhantasm} />
                 </li>
             </ul>
         </div>;
