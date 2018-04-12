@@ -29,6 +29,7 @@ export default class Master extends React.Component {
         const onUniformChange = e => this.onUniformChange(e.target.value);
 
         return <div>
+            礼装:
             <select onChange={onUniformChange}>
                 {this.state.implemented.map((uniform, index) => <UniformOption name={uniform.name} key={"uniform" + index} />)}
             </select>
