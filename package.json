@@ -7,6 +7,10 @@
   "author": "Roadagain <ringoh72@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html -d build"
+  },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "babel-preset-react-app": "^3.1.1",
