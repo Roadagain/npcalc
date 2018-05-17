@@ -1,0 +1,27 @@
+{
+  "name": "npcalc",
+  "version": "0.0.3",
+  "description": "NP計算機",
+  "main": "index.js",
+  "repository": "https://github.com/Roadagain/npcalc.git",
+  "author": "Roadagain <ringoh72@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-preset-react-app": "^3.1.1",
+    "parcel-bundler": "^1.8.1",
+    "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "@material-ui/core": "^1.0.0-rc.1",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "scripts": {
+    "start": "parcel src/index.html"
+  }
+}
