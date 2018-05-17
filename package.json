@@ -1,0 +1,10 @@
+{
+  "name": "npcalc",
+  "version": "0.0.3",
+  "description": "NP計算機",
+  "main": "index.js",
+  "repository": "https://github.com/Roadagain/npcalc.git",
+  "author": "Roadagain <ringoh72@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
