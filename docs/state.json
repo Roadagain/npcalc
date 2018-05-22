@@ -1,0 +1,50 @@
+{
+  "warn": "特殊ケースは無視したのであくまで目安",
+  "party": [
+    {
+      "name": "string",
+      "noblePhantasm": "function",
+      "np": "number",
+      "skills": [
+        {
+          "target": "enum-Target",
+          "timing": "enum-Timing",
+          "value": "number",
+          "ct": "number"
+        }
+      ],
+      "classSkills": [
+        {
+          "timing": "enum-Timing",
+          "value": "number",
+          "ct": "number"
+        }
+      ],
+      "noblePhantasm": {
+        "target": "enum-Target",
+        "timing": "enum-Timing",
+        "value": "number"
+      },
+      "craftEssense": {
+        "target": "enum-Target",
+        "timing": "enum-Timing",
+        "value": "number"
+      }
+    }
+  ],
+  "mysticCode": {
+    "skills": [
+      {
+        "target": "enum-Target",
+        "timing": "enum-Timing",
+        "value": "number",
+        "ct": "number"
+      },
+      {
+        "target": [
+          "servant", "servant"
+        ]
+      }
+    ]
+  }
+}
