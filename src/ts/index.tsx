@@ -1,4 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
 
-ReactDOM.render(<h1>NP計算機</h1>, document.getElementById("app"));
+const store = createStore(rootReducer);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <h1>NP計算機</h1>
+    </Provider>,
+    document.getElementById('app'));
