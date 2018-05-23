@@ -1,17 +1,10 @@
 import { GridList, GridListTile } from '@material-ui/core';
 import React from 'react';
 import Servant, { IServantProps } from './Servant';
+import { wrapGridListTile } from './Util';
 
 export interface IPartyProps {
     servants: IServantProps[];
-}
-
-function wrapGridListTile(component: JSX.Element, cols: number, key: string|undefined) {
-    return (
-        <GridListTile cols={cols} key={key}>
-            {component}
-        </GridListTile>
-    );
 }
 
 export default function Party({ servants }: IPartyProps) {
