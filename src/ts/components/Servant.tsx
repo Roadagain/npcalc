@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface IServantProps {
+export interface IServantProps {
     name: string;
 }
 
