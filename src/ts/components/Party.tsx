@@ -1,9 +1,9 @@
 import { GridList, GridListTile } from '@material-ui/core';
 import React from 'react';
-import Servant from './Servant';
+import Servant, { IServantProps } from './Servant';
 
 export interface IPartyProps {
-    servants: string[];
+    servants: IServantProps[];
 }
 
 function wrapGridListTile(component: JSX.Element, cols: number, key: string|undefined) {
@@ -19,10 +19,10 @@ export default function Party({ servants }: IPartyProps) {
     return (
         <GridList cols={12} cellHeight="auto">
             <GridListTile cols={3} />
-            {forwards.map(name => wrapGridListTile(<Servant name={name} />, 2, name))};
+            {forwards.map(servant => wrapGridListTile(<Servant {...servant} />, 2, servant.name))};
             <GridListTile cols={3} />
             <GridListTile cols={3} />
-            {backwards.map(name => wrapGridListTile(<Servant name={name} />, 2, name))};
+            {backwards.map(servant => wrapGridListTile(<Servant {...servant} />, 2, servant.name))};
             <GridListTile cols={3} />
         </GridList>
     );
