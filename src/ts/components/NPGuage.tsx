@@ -1,6 +1,6 @@
 import { GridList, GridListTile, LinearProgress, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
-import NumberInput from './NumberInput';
+import WrappedInput from './WrappedInput';
 
 const styles = {
     container: {
@@ -20,7 +20,7 @@ function NPGuage({ classes, np }: INPGuageProps & WithStyles) {
                 <LinearProgress variant="buffer" value={np} valueBuffer={100} />
             </GridListTile>
             <GridListTile cols={1}>
-                <NumberInput value={np} suffix="%" />
+                <WrappedInput value={np} suffix="%" />
             </GridListTile>
         </GridList>
     );
