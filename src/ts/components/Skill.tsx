@@ -1,3 +1,4 @@
+import { TextField } from '@material-ui/core';
 import React from 'react';
 
 export interface ISkillProps {
@@ -5,5 +6,5 @@ export interface ISkillProps {
 }
 
 export default function Skill({ name }: ISkillProps) {
-    return <p>{name}</p>;
+    return <TextField value={name} />;
 }
