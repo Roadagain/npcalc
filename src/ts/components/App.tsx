@@ -1,5 +1,5 @@
 import React from 'react';
-import Party, { IPartyProps } from './Party';
+import Party from './Party';
 
 function App() {
     const servants = ['a', 'b', 'c', 'd', 'e', 'f'].map(name => ({
