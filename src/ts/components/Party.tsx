@@ -11,12 +11,12 @@ export default function Party({ servants }: IPartyProps) {
     const [forwards, backwards] = [servants.slice(0, 3), servants.slice(3)];
     return (
         <GridList cols={12} cellHeight="auto">
-            <GridListTile cols={3} />
-            {forwards.map(servant => wrapGridListTile(<Servant {...servant} />, 2, servant.name))};
-            <GridListTile cols={3} />
-            <GridListTile cols={3} />
-            {backwards.map(servant => wrapGridListTile(<Servant {...servant} />, 2, servant.name))};
-            <GridListTile cols={3} />
+            <GridListTile cols={1.5} />
+            {forwards.map(servant => wrapGridListTile(<Servant {...servant} />, 3, servant.name))};
+            <GridListTile cols={1.5} />
+            <GridListTile cols={1.5} />
+            {backwards.map(servant => wrapGridListTile(<Servant {...servant} />, 3, servant.name))};
+            <GridListTile cols={1.5} />
         </GridList>
     );
 }
