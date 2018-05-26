@@ -1,4 +1,4 @@
-import { Card, CardContent, GridList, TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { Card, CardContent, CardHeader, GridList, TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import NPGuage from './NPGuage';
 import Skill, { ISkillProps } from './Skill';
@@ -6,8 +6,7 @@ import { wrapGridListTile } from './Util';
 
 const styles = (theme: Theme) => ({
     container: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        margin: theme.spacing.unit,
     },
 });
 
