@@ -1,4 +1,4 @@
-import { GridList, TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { Card, CardContent, GridList, TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import NPGuage from './NPGuage';
 import Skill, { ISkillProps } from './Skill';
@@ -18,13 +18,15 @@ export interface IServantProps {
 
 function Servant({ classes, name, skills }: IServantProps & WithStyles) {
     return (
-        <div className={classes.container}>
-        <TextField value={name} />
-        <NPGuage np={100} />
-        <GridList cols={3}>
-            {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
-        </GridList>
-        </div>
+        <Card className={classes.container}>
+            <CardContent>
+                <TextField value={name} />
+                <NPGuage np={100} />
+                <GridList cols={3}>
+                    {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
+                </GridList>
+            </CardContent>
+        </Card>
     );
 }
 
