@@ -16,7 +16,7 @@ export interface ISkillProps {
 function Skill({ classes, name }: ISkillProps & WithStyles) {
     return (
         <div className={classes.container} >
-            <TextField value={name} />
+            <TextField value={name} fullWidth={true} />
             <NPCharge value={10} />
             <Button>付与</Button>
         </div>
