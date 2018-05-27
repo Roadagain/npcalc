@@ -18,7 +18,7 @@ function Skill({ classes, name }: ISkillProps & WithStyles) {
         <div className={classes.container} >
             <TextField value={name} fullWidth={true} />
             <NPCharge value={10} />
-            <Button>付与</Button>
+            <Button fullWidth={true}>付与</Button>
         </div>
     );
 }
