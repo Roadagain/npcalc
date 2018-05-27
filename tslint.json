@@ -9,7 +9,13 @@
         "variable-name": false,
         "function-name": false,
         "ter-indent": false,
-        "indent": [true, "spaces", 4]
+        "indent": [true, "spaces", 4],
+        "max-line-length": [
+            true, 
+            {
+                "ignore-pattern": "^import |^export {(.*?)}"
+            }
+        ]
     },
     "rulesDirectory": []
 }
