@@ -1,5 +1,6 @@
-import { TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { Button, TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
+import NPCharge from './NPCharge';
 
 const styles = (theme: Theme) => ({
     container: {
@@ -13,7 +14,13 @@ export interface ISkillProps {
 }
 
 function Skill({ classes, name }: ISkillProps & WithStyles) {
-    return <TextField value={name} className={classes.container} />;
+    return (
+        <div className={classes.container} >
+            <TextField value={name} />
+            <NPCharge value={10} />
+            <Button>付与</Button>
+        </div>
+    );
 }
 
 export default withStyles(styles)(Skill);
