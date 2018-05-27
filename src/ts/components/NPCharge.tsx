@@ -16,4 +16,3 @@ export default function NPCharge({ value }: INPChargeProps) {
         </div>
     );
 }
-;
