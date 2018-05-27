@@ -19,7 +19,7 @@ function Servant({ classes, name, skills }: IServantProps & WithStyles) {
     return (
         <Card className={classes.container}>
             <CardContent>
-                <TextField value={name} />
+                <TextField value={name} fullWidth={true} />
                 <NPGuage np={100} />
                 <GridList cols={3}>
                     {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
