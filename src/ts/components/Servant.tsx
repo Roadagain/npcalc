@@ -14,16 +14,20 @@ const styles = (theme: Theme) => ({
 
 export interface IServantProps {
     name: string;
+    classSkill: ISkillProps;
+    craftEssence: ISkillProps;
     skills: ISkillProps[];
 }
 
-function Servant({ classes, name, skills }: IServantProps & WithStyles) {
+function Servant({ classes, name, classSkill, craftEssence, skills }: IServantProps & WithStyles) {
     return (
         <Card className={classes.container}>
             <CardContent>
                 <TextField value={name} fullWidth={true} />
                 <NPGuage np={100} />
                 <GridList cols={3} cellHeight="auto">
+                    {wrapGridListTile(<Skill {...classSkill} passive={true} />, 1)}
+                    {wrapGridListTile(<Skill {...craftEssence} passive={true} />, 1)}
                     {wrapGridListTile(<NoblePhantasm name="宝具" value={0} type={ChargeType.IMMEDIATELY} />, 1)}
                 </GridList>
                 <GridList cols={3}>
