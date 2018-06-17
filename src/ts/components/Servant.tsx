@@ -30,7 +30,7 @@ function Servant({ classes, name, classSkill, craftEssence, skills }: IServantPr
                     {wrapGridListTile(<Skill {...craftEssence} passive={true} />, 1)}
                     {wrapGridListTile(<NoblePhantasm name="宝具" value={0} type={ChargeType.IMMEDIATELY} />, 1)}
                 </GridList>
-                <GridList cols={3}>
+                <GridList cols={3} cellHeight="auto">
                     {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
                 </GridList>
             </CardContent>
