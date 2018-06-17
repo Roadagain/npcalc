@@ -1,5 +1,7 @@
+import { GridList, GridListTile } from '@material-ui/core';
 import React from 'react';
 import Party from './Party';
+import { wrapGridListTile } from './Util';
 
 function App() {
     const servants = [1, 2, 3, 4, 5, 6].map(num => ({
@@ -11,7 +13,11 @@ function App() {
     return (
         <div>
             <h1>NP計算機</h1>
-            <Party servants={servants} />
+            <GridList cols={14} cellHeight="auto">
+                <GridListTile cols={1} />
+                {wrapGridListTile(<Party servants={servants} />, 12)}
+                <GridListTile cols={1} />
+            </GridList>
         </div>
     );
 }
