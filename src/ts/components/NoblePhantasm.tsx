@@ -1,4 +1,4 @@
-import { Button, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { Button, TextField, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
 import NPCharge, { INPChargeProps } from './NPCharge';
 
@@ -9,11 +9,14 @@ const styles = (theme: Theme) => ({
     },
 });
 
-export type INoblePhantasmProps = INPChargeProps;
+export interface INoblePhantasmProps extends INPChargeProps {
+    name: string;
+}
 
-function NoblePhantasm({ value, type, classes }: INoblePhantasmProps & WithStyles) {
+function NoblePhantasm({ name, value, type, classes }: INoblePhantasmProps & WithStyles) {
     return (
         <div className={classes.container}>
+            <TextField value={name} fullWidth={true} />
             <NPCharge value={value} type={type} />
             <Button fullWidth={true}>宝具開放</Button>
         </div>

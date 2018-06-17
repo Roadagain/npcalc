@@ -24,7 +24,7 @@ function Servant({ classes, name, skills }: IServantProps & WithStyles) {
                 <TextField value={name} fullWidth={true} />
                 <NPGuage np={100} />
                 <GridList cols={3} cellHeight="auto">
-                    {wrapGridListTile(<NoblePhantasm value={0} type={ChargeType.IMMEDIATELY} />, 1)}
+                    {wrapGridListTile(<NoblePhantasm name="宝具" value={0} type={ChargeType.IMMEDIATELY} />, 1)}
                 </GridList>
                 <GridList cols={3}>
                     {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
