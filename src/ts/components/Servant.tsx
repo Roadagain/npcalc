@@ -1,16 +1,11 @@
-import { Card, CardContent, GridList, TextField, Theme, withStyles, WithStyles } from '@material-ui/core';
+import {  GridList, TextField, Theme } from '@material-ui/core';
 import React from 'react';
 import ChargeType from '../data/ChargeType';
+import CardWrapper from './CardWrapper';
 import NoblePhantasm from './NoblePhantasm';
 import NPGuage from './NPGuage';
 import Skill, { ISkillProps } from './Skill';
 import { wrapGridListTile } from './Util';
-
-const styles = (theme: Theme) => ({
-    container: {
-        margin: theme.spacing.unit,
-    },
-});
 
 export interface IServantProps {
     name: string;
@@ -19,23 +14,19 @@ export interface IServantProps {
     skills: ISkillProps[];
 }
 
-function Servant({ classes, name, classSkill, craftEssence, skills }: IServantProps & WithStyles) {
+export default function Servant({ name, classSkill, craftEssence, skills }: IServantProps) {
     return (
-        <Card className={classes.container}>
-            <CardContent>
-                <TextField value={name} fullWidth={true} />
-                <NPGuage np={100} />
-                <GridList cols={3} cellHeight="auto">
-                    {wrapGridListTile(<Skill {...classSkill} passive={true} />, 1)}
-                    {wrapGridListTile(<Skill {...craftEssence} passive={true} />, 1)}
-                    {wrapGridListTile(<NoblePhantasm name="宝具" value={0} type={ChargeType.IMMEDIATELY} />, 1)}
-                </GridList>
-                <GridList cols={3} cellHeight="auto">
-                    {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
-                </GridList>
-            </CardContent>
-        </Card>
+        <CardWrapper>
+            <TextField value={name} fullWidth={true} />
+            <NPGuage np={100} />
+            <GridList cols={3} cellHeight="auto">
+                {wrapGridListTile(<Skill {...classSkill} passive={true} />, 1)}
+                {wrapGridListTile(<Skill {...craftEssence} passive={true} />, 1)}
+                {wrapGridListTile(<NoblePhantasm name="宝具" value={0} type={ChargeType.IMMEDIATELY} />, 1)}
+            </GridList>
+            <GridList cols={3} cellHeight="auto">
+                {skills.map(skill => wrapGridListTile(<Skill {...skill} />, 1, skill.name))}
+            </GridList>
+        </CardWrapper>
     );
 }
-
-export default withStyles(styles)(Servant);
