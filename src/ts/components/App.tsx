@@ -1,8 +1,9 @@
-import { GridList, GridListTile } from '@material-ui/core';
+import { GridList, GridListTile, Typography } from '@material-ui/core';
 import React from 'react';
 import MysticCodeSkill from '../data/MysticCodeSkill';
 import MysticCode from './MysticCode';
 import Party from './Party';
+import Title from './Title';
 import TurnCounter from './TurnCounter';
 import { wrapGridListTile } from './Util';
 
@@ -19,10 +20,9 @@ function App() {
     };
     return (
         <div>
-            <h1>NP計算機</h1>
             <GridList cols={14} cellHeight="auto">
                 <GridListTile cols={1} />
-                <GridListTile cols={4} />
+                {wrapGridListTile(<Title />, 4)}
                 {wrapGridListTile(<TurnCounter turns={0} />, 4)}
                 {wrapGridListTile(<MysticCode {...mysticCode} />, 4)}
                 <GridListTile cols={1} />
