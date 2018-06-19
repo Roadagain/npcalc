@@ -2,7 +2,7 @@ enum MysticCodeSkill {
     EMPTY,
     ORDER_CHANGE,
     SPIRITRON_TRANSFER,
-    BRILLIANT_SUMMER,
+    SEA_HOUSE_SHOWER,
 }
 
 export function toString(skill: MysticCodeSkill) {
@@ -10,7 +10,7 @@ export function toString(skill: MysticCodeSkill) {
         case MysticCodeSkill.EMPTY: return '';
         case MysticCodeSkill.ORDER_CHANGE: return 'オーダーチェンジ';
         case MysticCodeSkill.SPIRITRON_TRANSFER: return '霊子譲渡';
-        case MysticCodeSkill.BRILLIANT_SUMMER: return 'ブリリアント・サマー';
+        case MysticCodeSkill.SEA_HOUSE_SHOWER: return 'シーハウス・シャワー';
     }
 }
 
