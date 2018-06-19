@@ -14,7 +14,7 @@ function App() {
         name: `サーヴァント${num}`,
         skills: [{ name: 'スキル1' }, { name: 'スキル2' }, { name: 'スキル3' }],
     }));
-    const mysticCode = MysticCode.BRILLIANT_SUMMER;
+    const mysticCode = MysticCode.EMPTY;
     return (
         <div>
             <GridList cols={14} cellHeight="auto">
