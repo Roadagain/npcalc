@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import App from './components/App';
 import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
     <Provider store={store}>
-        <h1>NP計算機</h1>
+        <App />
     </Provider>,
     document.getElementById('app'));
