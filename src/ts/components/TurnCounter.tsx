@@ -10,10 +10,10 @@ export interface ITurnCounterProps {
 export default function TurnCounter({ turns }: ITurnCounterProps) {
     return (
         <CardWrapper>
-            <GridList cols={4} cellHeight="auto">
-                {wrapGridListTile(<Typography variant="headline" color="inherit">{turns} ターン</Typography>, 2)}
-                {wrapGridListTile(<Button fullWidth={true}>経過</Button>, 1)}
-                {wrapGridListTile(<Button fullWidth={true}>リセット</Button>, 1)}
+            <GridList cols={10} cellHeight="auto">
+                {wrapGridListTile(<Typography variant="headline" color="inherit">{turns} ターン</Typography>, 4)}
+                {wrapGridListTile(<Button fullWidth={true}>経過</Button>, 3)}
+                {wrapGridListTile(<Button fullWidth={true}>リセット</Button>, 3)}
             </GridList>
         </CardWrapper>
     );
