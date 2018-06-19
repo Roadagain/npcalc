@@ -1,3 +1,5 @@
+import MysticCodeSkill from './MysticCodeSkill';
+
 enum MysticCode {
     EMPTY,
     CHALDEA_COMBAT_UNIFORM,
@@ -11,6 +13,15 @@ export function toString(mysticCode: MysticCode) {
         case MysticCode.CHALDEA_COMBAT_UNIFORM: return 'カルデア戦闘服';
         case MysticCode.MAGES_ASSOCIATION_UNIFORM: return '魔術協会制服';
         case MysticCode.BRILLIANT_SUMMER: return 'ブリリアント・サマー';
+    }
+}
+
+export function skill(mysticCode: MysticCode) {
+    switch (mysticCode) {
+        case MysticCode.EMPTY: return MysticCodeSkill.EMPTY;
+        case MysticCode.CHALDEA_COMBAT_UNIFORM: return MysticCodeSkill.ORDER_CHANGE;
+        case MysticCode.MAGES_ASSOCIATION_UNIFORM: return MysticCodeSkill.SPIRITRON_TRANSFER;
+        case MysticCode.BRILLIANT_SUMMER: return MysticCodeSkill.SEA_HOUSE_SHOWER;
     }
 }
 

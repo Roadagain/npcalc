@@ -1,7 +1,7 @@
-import { GridList, GridListTile, Typography } from '@material-ui/core';
+import { GridList, GridListTile } from '@material-ui/core';
 import React from 'react';
-import MysticCodeSkill from '../data/MysticCodeSkill';
-import MysticCode from './MysticCode';
+import MysticCode from '../data/MysticCode';
+import MysticCodeCard from './MysticCodeCard';
 import Party from './Party';
 import Title from './Title';
 import TurnCounter from './TurnCounter';
@@ -14,17 +14,14 @@ function App() {
         name: `サーヴァント${num}`,
         skills: [{ name: 'スキル1' }, { name: 'スキル2' }, { name: 'スキル3' }],
     }));
-    const mysticCode = {
-        name: '魔術礼装',
-        skill: MysticCodeSkill.EMPTY,
-    };
+    const mysticCode = MysticCode.BRILLIANT_SUMMER;
     return (
         <div>
             <GridList cols={14} cellHeight="auto">
                 <GridListTile cols={1} />
                 {wrapGridListTile(<Title />, 4)}
                 {wrapGridListTile(<TurnCounter turns={0} />, 4)}
-                {wrapGridListTile(<MysticCode {...mysticCode} />, 4)}
+                {wrapGridListTile(<MysticCodeCard mysticCode={mysticCode} />, 4)}
                 <GridListTile cols={1} />
                 <GridListTile cols={1} />
                 {wrapGridListTile(<Party servants={servants} />, 12)}
