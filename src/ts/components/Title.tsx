@@ -1,6 +1,5 @@
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React from 'react';
-import CardWrapper from './CardWrapper';
 
 export default function Title() {
     return (
