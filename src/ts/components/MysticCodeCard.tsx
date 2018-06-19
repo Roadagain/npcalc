@@ -22,7 +22,7 @@ export default function MysticCodeCard({ mysticCode }: IMysticCodeProps) {
     return (
         <CardWrapper>
             <GridList cols={2} cellHeight="auto">
-                <MysticCodeMenu value={mysticCode} />
+                {wrapGridListTile(<MysticCodeMenu value={mysticCode} />, 1)}
                 {wrapGridListTile(skillButton(mysticCode), 1)}
             </GridList>
         </CardWrapper>
