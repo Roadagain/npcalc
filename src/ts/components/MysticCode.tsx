@@ -2,6 +2,7 @@ import { Button, GridList, TextField } from '@material-ui/core';
 import React from 'react';
 import MysticCodeSkill, { toString } from '../data/MysticCodeSkill';
 import CardWrapper from './CardWrapper';
+import MysticCodeMenu from './MysticCodeMenu';
 import { wrapGridListTile } from './Util';
 
 export interface IMysticCodeProps {
@@ -20,7 +21,7 @@ export default function MysticCode({ name, skill }: IMysticCodeProps) {
     return (
         <CardWrapper>
             <GridList cols={2} cellHeight="auto">
-                {wrapGridListTile(<TextField value={name} fullWidth={true} />, 1)}
+                <MysticCodeMenu />
                 {wrapGridListTile(skillButton(skill), 1)}
             </GridList>
         </CardWrapper>
