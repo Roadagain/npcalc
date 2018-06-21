@@ -26,7 +26,8 @@
     "webpack-serve": "^1.0.4"
   },
   "scripts": {
-    "build": "TS_NODE_PROJECT=\"tsconfig.json\" webpack",
+    "build": "TS_NODE_PROJECT=\"tsconfig.json\" webpack --config webpack.config.dev.ts",
+    "build:prod": "TS_NODE_PROJECT=\"tsconfig.json\" webpack --config webpack.config.prod.ts",
     "start": "ts-node ./node_modules/.bin/webpack-serve"
   }
 }
